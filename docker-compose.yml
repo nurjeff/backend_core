@@ -1,0 +1,55 @@
+version: '3.9'
+services:
+  #app:
+  #  container_name: golang_container
+  #  environment:
+  #    - POSTGRES_USER=${DB_USER}
+  #    - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #    - POSTGRES_DB=${DB_NAME}
+  #    - DATABASE_HOST=${DB_HOST}
+  #    - DATABASE_PORT=${DB_PORT}
+  #    - TEST_POSTGRES_USER=${TEST_DB_USER}
+  #    - TEST_POSTGRES_PASSWORD=${TEST_DB_PASSWORD}
+  #    - TEST_POSTGRES_DB=${TEST_DB_NAME}
+  #    - TEST_DATABASE_HOST=${TEST_DB_HOST}
+  #    - TEST_DATABASE_PORT=${TEST_DB_PORT}
+  #  tty: true
+  #  build: .
+  #  ports:
+  #    - 8000:8080
+  #  restart: on-failure
+  #  volumes:
+  #    - .:/app
+  #  depends_on:
+  #    - postgresdb
+  #    - cache
+
+  postgresdb:
+    image: postgres:alpine
+    container_name: dev_postgres_container
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  cache:
+    image: redis
+    container_name: dev_cache_redis_container
+    hostname: redis
+    restart: unless-stopped
+    ports:
+      - '7766:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${CACHE_PASSWORD}
+    volumes: 
+      - cache:/data
+
+volumes:
+  pg_data:
+  cache:
+    driver: local
