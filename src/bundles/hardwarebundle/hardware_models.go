@@ -12,7 +12,7 @@ import (
 	"github.com/jaypipes/ghw/pkg/pci"
 	"github.com/jaypipes/ghw/pkg/product"
 	"github.com/jaypipes/ghw/pkg/topology"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/tools"
 )
 
 type hardwareUsage struct {

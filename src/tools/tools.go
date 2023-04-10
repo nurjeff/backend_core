@@ -10,7 +10,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/sc-js/core_backend/src/errs"
+	"github.com/sc-js/backend_core/src/errs"
 )
 
 func GetMD5(input string) string {

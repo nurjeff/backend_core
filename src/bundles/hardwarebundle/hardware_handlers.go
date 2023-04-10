@@ -9,7 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jaypipes/ghw"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/tools"
 )
 
 var hwCache hardwareInformation

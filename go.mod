@@ -1,4 +1,4 @@
-module github.com/sc-js/core_backend
+module github.com/sc-js/backend_core
 
 go 1.20
 

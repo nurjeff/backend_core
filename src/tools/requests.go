@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/core_backend/src/bundles/deepcorebundle"
-	"github.com/sc-js/core_backend/src/errs"
+	"github.com/sc-js/backend_core/src/bundles/deepcorebundle"
+	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/pour"
 	"go.uber.org/zap"
 	"gorm.io/gorm"

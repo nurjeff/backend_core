@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/core_backend/src/errs"
+	"github.com/sc-js/backend_core/src/errs"
 )
 
 var routePermissionMap map[string]uint = make(map[string]uint)

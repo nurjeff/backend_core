@@ -10,7 +10,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	t "github.com/sc-js/core_backend/src/tools"
+	t "github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 )
 

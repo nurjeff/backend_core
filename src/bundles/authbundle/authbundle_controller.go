@@ -1,9 +1,9 @@
 package authbundle
 
 import (
-	"github.com/sc-js/core_backend/src/bundles/cachebundle"
-	"github.com/sc-js/core_backend/src/bundles/deepcorebundle"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/bundles/cachebundle"
+	"github.com/sc-js/backend_core/src/bundles/deepcorebundle"
+	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 )
 

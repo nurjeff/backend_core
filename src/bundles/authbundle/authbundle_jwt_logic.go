@@ -12,9 +12,9 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/core_backend/src/bundles/cachebundle"
-	"github.com/sc-js/core_backend/src/errs"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/bundles/cachebundle"
+	"github.com/sc-js/backend_core/src/errs"
+	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"github.com/twinj/uuid"
 )

@@ -9,8 +9,8 @@ import (
 
 	"github.com/aerospike/aerospike-client-go"
 	"github.com/go-redis/redis"
-	"github.com/sc-js/core_backend/src/errs"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/errs"
+	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"golang.org/x/net/context"
 )

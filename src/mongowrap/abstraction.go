@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sc-js/core_backend/src/errs"
+	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/pour"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

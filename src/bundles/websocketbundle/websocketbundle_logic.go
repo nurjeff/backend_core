@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/sc-js/core_backend/src/bundles/authbundle"
-	"github.com/sc-js/core_backend/src/errs"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/bundles/authbundle"
+	"github.com/sc-js/backend_core/src/errs"
+	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"gorm.io/gorm"
 )

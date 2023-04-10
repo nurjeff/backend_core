@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	t "github.com/sc-js/core_backend/src/tools"
+	t "github.com/sc-js/backend_core/src/tools"
 )
 
 var routes []t.GinRoute

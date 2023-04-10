@@ -3,7 +3,7 @@ package authbundle
 import (
 	"encoding/json"
 
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/tools"
 )
 
 const (

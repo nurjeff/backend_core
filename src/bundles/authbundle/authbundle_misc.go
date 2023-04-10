@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/core_backend/src/bundles/cachebundle"
-	t "github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/bundles/cachebundle"
+	t "github.com/sc-js/backend_core/src/tools"
 	"gorm.io/gorm"
 )
 

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/sc-js/core_backend/src/bundles/hardwarebundle"
-	"github.com/sc-js/core_backend/src/bundles/initbundle"
-	"github.com/sc-js/core_backend/src/bundles/websocketbundle"
+	"github.com/sc-js/backend_core/src/bundles/hardwarebundle"
+	"github.com/sc-js/backend_core/src/bundles/initbundle"
+	"github.com/sc-js/backend_core/src/bundles/websocketbundle"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package tools
 import (
 	"encoding/json"
 
-	"github.com/sc-js/core_backend/src/mongowrap"
+	"github.com/sc-js/backend_core/src/mongowrap"
 	"github.com/speps/go-hashids"
 	"gorm.io/gorm"
 )

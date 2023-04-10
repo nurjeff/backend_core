@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/core_backend/src/bundles/authbundle"
-	"github.com/sc-js/core_backend/src/errs"
-	"github.com/sc-js/core_backend/src/tools"
+	"github.com/sc-js/backend_core/src/bundles/authbundle"
+	"github.com/sc-js/backend_core/src/errs"
+	"github.com/sc-js/backend_core/src/tools"
 )
 
 func (con *websocketController) upgradeWSHandler(c *gin.Context) {
