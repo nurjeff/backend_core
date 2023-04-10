@@ -21,7 +21,6 @@ import (
 	"github.com/sc-js/backend_core/src/bundles/cachebundle"
 	"github.com/sc-js/backend_core/src/bundles/deepcorebundle"
 	"github.com/sc-js/backend_core/src/bundles/localizationbundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/mongowrap"
 	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
@@ -47,7 +46,7 @@ type Bundle struct {
 }
 
 func InitializeCoreWithBundles(bundles []Bundle, conf *InitConfiguration) {
-	defer errs.Defer()
+
 	time.Sleep(time.Second)
 	dockerFlag := flag.Bool("docker", false, "Running in docker")
 	flag.Parse()
@@ -244,7 +243,7 @@ func buildMongoUri(config Config) string {
 }
 
 func initialMigration() *gorm.DB {
-	defer errs.Defer()
+
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),
 		initConf.DBLoggerConfig,

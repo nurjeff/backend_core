@@ -4,7 +4,6 @@ import (
 	"reflect"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/backend_core/src/errs"
 )
 
 type translationOperator func(obj reflect.Value, locale string) interface{}
@@ -16,7 +15,7 @@ var ValidatorCallback localeValidator
 var SingleTranslationCallback singleTranslationOperator
 
 func tryTranslate(x interface{}, c *gin.Context) interface{} {
-	defer errs.Defer()
+
 	var val reflect.Value
 	vo := reflect.ValueOf(x)
 	if vo.Kind() == reflect.Ptr {

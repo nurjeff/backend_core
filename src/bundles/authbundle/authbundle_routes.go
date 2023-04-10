@@ -17,16 +17,16 @@ func InitBundle(r *gin.RouterGroup, wrap *t.DataWrap, withRegister bool, setting
 		{Method: http.MethodPost, Endpoint: "/auth/refresh", Handler: controller.refreshHandler},
 		{Method: http.MethodPost, Endpoint: "/auth/logout", Handler: controller.logoutHandler},
 		{Method: http.MethodGet, Endpoint: "/auth/user", Handler: controller.getUserHandler},
-		{Method: http.MethodGet, Endpoint: "/auth/user/:hid", Handler: controller.getUserByIdHandler},
-		{Method: http.MethodPatch, Endpoint: "/auth/user/:hid", Handler: controller.updateUserHandler},
+		//{Method: http.MethodGet, Endpoint: "/auth/user/:hid", Handler: controller.getUserByIdHandler},
+		//{Method: http.MethodPatch, Endpoint: "/auth/user/:hid", Handler: controller.updateUserHandler},
 
 		//Images
-		{Method: http.MethodGet, Endpoint: "/auth/user/image", Handler: controller.getUserImageHandler},
-		{Method: http.MethodPost, Endpoint: "/auth/user/image", Handler: controller.uploadUserImageHandler},
+		//{Method: http.MethodGet, Endpoint: "/auth/user/image", Handler: controller.getUserImageHandler},
+		//{Method: http.MethodPost, Endpoint: "/auth/user/image", Handler: controller.uploadUserImageHandler},
 
-		{Method: http.MethodPost, Endpoint: "/auth/user/:hid/image", Handler: controller.uploadUserByIdImageHandler},
-		{Method: http.MethodGet, Endpoint: "/auth/user/:hid/image", Handler: controller.getUserImageByIdHandler},
-		{Method: http.MethodDelete, Endpoint: "/auth/user/:hid/image", Handler: controller.deleteUserByIdImageHandler},
+		//{Method: http.MethodPost, Endpoint: "/auth/user/:hid/image", Handler: controller.uploadUserByIdImageHandler},
+		//{Method: http.MethodGet, Endpoint: "/auth/user/:hid/image", Handler: controller.getUserImageByIdHandler},
+		//{Method: http.MethodDelete, Endpoint: "/auth/user/:hid/image", Handler: controller.deleteUserByIdImageHandler},
 	}
 
 	if withRegister {

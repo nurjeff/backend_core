@@ -6,30 +6,29 @@ import (
 	"sync"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/backend_core/src/errs"
 	"gorm.io/gorm"
 )
 
 func GetSingle[T any](db *gorm.DB) (T, error) {
-	defer errs.Defer()
+
 	t := new(T)
 	return *t, db.First(&t).Error
 }
 
 func GetAll[T any](db *gorm.DB) ([]T, error) {
-	defer errs.Defer()
+
 	t := new([]T)
 	return *t, db.Find(&t).Error
 }
 
 func GetSingleById[T any](c *gin.Context, db *gorm.DB) (T, error) {
-	defer errs.Defer()
+
 	t := new(T)
 	return *t, db.Where("id=?", Decode(c.Param("hid"))).First(&t).Error
 }
 
 func GetSingleByIdAndSend[T any](c *gin.Context, db *gorm.DB) (T, error) {
-	defer errs.Defer()
+
 	b, err := GetSingleById[T](c, db)
 	if err != nil {
 		RespondError(err, http.StatusForbidden, c)
@@ -40,7 +39,7 @@ func GetSingleByIdAndSend[T any](c *gin.Context, db *gorm.DB) (T, error) {
 }
 
 func Update[T any](obj interface{}, db *gorm.DB, c *gin.Context) (T, error) {
-	defer errs.Defer()
+
 	t := obj.(T)
 	c.Bind(&t)
 	o, err := updateObject(t, db, c)

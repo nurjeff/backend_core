@@ -2,7 +2,6 @@ package websocketbundle
 
 import (
 	"github.com/sc-js/backend_core/src/bundles/deepcorebundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 )
 
@@ -21,7 +20,7 @@ const (
 )
 
 func initialize(wrap *tools.DataWrap, settings map[string]string) *websocketController {
-	defer errs.Defer()
+
 	c := &websocketController{Controller: deepcorebundle.Controller{}, DataWrap: wrap}
 	handleSettings(settings, wrap)
 	wshub = newHub(wrap)

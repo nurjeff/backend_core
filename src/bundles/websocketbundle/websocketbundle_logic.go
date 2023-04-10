@@ -9,7 +9,6 @@ import (
 
 	"github.com/gorilla/websocket"
 	"github.com/sc-js/backend_core/src/bundles/authbundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"gorm.io/gorm"
@@ -57,7 +56,7 @@ func newHub(wrap *tools.DataWrap) *hub {
 }
 
 func (h *hub) run() {
-	defer errs.Defer()
+
 	for {
 		select {
 		case client := <-h.register:
@@ -108,7 +107,7 @@ var upgrader = websocket.Upgrader{
 var wsSendingCache sync.Map
 
 func serveWs(hub *hub, w http.ResponseWriter, r *http.Request, user authbundle.AuthUser) {
-	defer errs.Defer()
+
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		pour.LogColor(false, "WS Error:", err)

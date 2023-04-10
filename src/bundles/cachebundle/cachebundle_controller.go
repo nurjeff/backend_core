@@ -9,7 +9,6 @@ import (
 
 	"github.com/aerospike/aerospike-client-go"
 	"github.com/go-redis/redis"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"golang.org/x/net/context"
@@ -103,7 +102,7 @@ func initRedis(address string, portOverride uint, username string, password stri
 // This method works like th Put Method, but it also takes in an expiration time,
 // after which the record will be automatically removed from the cache
 func PutExpire[T any](name string, key string, val T, expiration time.Duration) error {
-	defer errs.Defer()
+
 	switch connectedModule {
 	case AeroSpike:
 		internalKey, err := aerospike.NewKey(workspace, name, key)
@@ -125,7 +124,7 @@ func PutExpire[T any](name string, key string, val T, expiration time.Duration) 
 // If the module is Redis, it will set the name, key, and value and return the result of the Set method.
 // If none of the modules are connected, it will return an error.
 func Put[T any](name string, key string, val T) error {
-	defer errs.Defer()
+
 	switch connectedModule {
 	case AeroSpike:
 		internalKey, err := aerospike.NewKey(workspace, name, key)
@@ -145,7 +144,7 @@ func Put[T any](name string, key string, val T) error {
 // It uses the workspace name and key provided to search for the value and returns the value or an error if the value is not found.
 // It also handles different types of values and can convert them to the desired type.
 func Get[T any](name string, key string) (T, error) {
-	defer errs.Defer()
+
 	var result T
 	switch connectedModule {
 	case AeroSpike:
@@ -238,7 +237,7 @@ func Get[T any](name string, key string) (T, error) {
 
 // This method deletes a given workspace/key from the cache, depending on the connected module.
 func Del(name string, key string) error {
-	defer errs.Defer()
+
 	switch connectedModule {
 	case AeroSpike:
 		{

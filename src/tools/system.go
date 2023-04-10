@@ -6,13 +6,12 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sc-js/backend_core/src/errs"
 )
 
 var routePermissionMap map[string]uint = make(map[string]uint)
 
 func InitHandlers(r *gin.RouterGroup, routes []GinRoute) {
-	defer errs.Defer()
+
 	for _, element := range routes {
 		routePermissionMap[element.Endpoint] = element.Permission
 		switch element.Method {
@@ -43,7 +42,7 @@ func CheckRouteNeedsAdmin(endpoint string) bool {
 }
 
 func CreateDirectoryTree(path string) string {
-	defer errs.Defer()
+
 	path = DOCKER_PATH + "/" + path
 	parts := strings.Split(path, "/")
 	soFar := ""

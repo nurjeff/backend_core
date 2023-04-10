@@ -13,7 +13,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/sc-js/backend_core/src/bundles/cachebundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 	"github.com/twinj/uuid"
@@ -24,7 +23,7 @@ var refreshSecret = ""
 
 // Create a JWT token for a specific user
 func CreateToken(userid uint64) (*TokenDetails, error) {
-	defer errs.Defer()
+
 	td := &TokenDetails{}
 	td.AtExpires = time.Now().Add(time.Hour * 24 * 30).Unix()
 	td.AccessUuid = uuid.NewV4().String()
@@ -126,7 +125,7 @@ func TokenValid(r *http.Request) error {
 
 // Get Token information from an incoming WebSocket connection
 func ExtractTokenMetadataWS(r *http.Request) (*AccessDetails, error) {
-	defer errs.Defer()
+
 	token, err := ExtractJWTTokenFromToken(r.URL.Query().Get("token"))
 	if err != nil {
 		return nil, err
@@ -152,7 +151,7 @@ func ExtractTokenMetadataWS(r *http.Request) (*AccessDetails, error) {
 
 // Extract the whole Metadata information (UUID and UserID) from an incoming request
 func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
-	defer errs.Defer()
+
 	token, err := VerifyToken(r)
 	if err != nil {
 		return nil, err

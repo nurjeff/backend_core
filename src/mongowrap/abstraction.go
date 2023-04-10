@@ -8,7 +8,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/pour"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -48,7 +47,7 @@ type Sort map[string]int
 // Automatically parses the collection name in snake case from reflection name
 // You can pass nil for the collectionName, which will automatically infer it from the structs name
 func GetMany[T any](m *Mongo, query *Query, collectionName string) ([]T, error) {
-	defer errs.Defer()
+
 	var data []T = []T{}
 	filter := &bson.D{}
 	sort := &bson.D{}
@@ -119,7 +118,7 @@ func getFindOptions(query *Query) *options.FindOptions {
 // Need to pass a generic Datatype to the function, else this will not compile
 // Automatically parses the collection name in snake case from reflection name
 func Get[T any](m *Mongo, query *Query) (T, error) {
-	defer errs.Defer()
+
 	var data T
 	filter := &bson.D{}
 	sort := &bson.D{}
@@ -222,7 +221,7 @@ func fillSort(sort *bson.D, query *Query) error {
 // Need to pass a pointer to a slice, else this will not compile or throw an error.
 // Automatically parses the collection name in snake case from reflection name
 func PutMany[T any](m *Mongo, value []T, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
-	defer errs.Defer()
+
 	if err := m.checkNil(); err != nil {
 		return nil, err
 	}
@@ -245,7 +244,7 @@ func PutMany[T any](m *Mongo, value []T, opts ...*options.InsertManyOptions) (*m
 }
 
 func PutManyCollection[T any](m *Mongo, collectionName string, value []T, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
-	defer errs.Defer()
+
 	if err := m.checkNil(); err != nil {
 		return nil, err
 	}
@@ -273,7 +272,7 @@ func PutManyCollection[T any](m *Mongo, collectionName string, value []T, opts .
 // Contrary to PutMany[](), this does not take in a pointer of an object
 // Automatically parses the collection name in snake case from the reflection name
 func PutOne[T any](m *Mongo, value T, opts ...*options.InsertOneOptions) (*mongo.InsertOneResult, error) {
-	defer errs.Defer()
+
 	if err := m.checkNil(); err != nil {
 		return nil, err
 	}

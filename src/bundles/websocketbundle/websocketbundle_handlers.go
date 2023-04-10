@@ -5,12 +5,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sc-js/backend_core/src/bundles/authbundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 )
 
 func (con *websocketController) upgradeWSHandler(c *gin.Context) {
-	defer errs.Defer()
+
 	if allowConnections == PERM_NONE {
 		tools.RespondWithError(c, http.StatusForbidden, "not_authorized")
 		return

@@ -9,7 +9,6 @@ import (
 
 	"github.com/aerospike/aerospike-client-go"
 	"github.com/go-redis/redis"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/backend_core/src/tools"
 	"github.com/sc-js/pour"
 )
@@ -18,7 +17,7 @@ const translation_path = "./translations/"
 
 // Gets a translation for a key, given a
 func GetTS(locale string, key string) (string, error) {
-	defer errs.Defer()
+
 	switch connectedModule {
 	case AeroSpike:
 		pour.LogPanicKill(1, errors.New("not_implemented"))
@@ -36,7 +35,7 @@ func GetTS(locale string, key string) (string, error) {
 
 // Append a new translation entry (specified by key) into a specific locale data structure (Cache and file).
 func WriteNewTSEntry(locale string, key string) {
-	defer errs.Defer()
+
 	go func() {
 		cacheFileLock.Lock()
 		defer cacheFileLock.Unlock()
@@ -75,7 +74,7 @@ func WriteNewTSEntry(locale string, key string) {
 
 // Translations
 func PutTS(key string, locale string, val string) error {
-	defer errs.Defer()
+
 	switch connectedModule {
 	case AeroSpike:
 		internalKey, err := aerospike.NewKey(workspace, "translation_"+locale+"_", key)
@@ -111,7 +110,7 @@ func ReadTSJson(path string, autoRefresh bool) {
 // Removes all Pre- and suffixes from the name to determine the corresponding locale.
 // Parses the locales and caches them for faster access.
 func readTSJson(path string) error {
-	defer errs.Defer()
+
 	files, err := tools.WalkDir(path, []string{"json"})
 	if err != nil {
 		pour.LogColor(true, pour.ColorRed, err)
@@ -167,7 +166,7 @@ func insertDefaultValues() {
 // Auto-creates the translations folder and creates the default translation files which are hardcoded for the moment.
 // Translations are cached for faster acccess.
 func PutTSMap(m map[string]string, locale string, verbose bool) error {
-	defer errs.Defer()
+
 	if _, err := os.Stat(translation_path); os.IsNotExist(err) {
 		err := os.Mkdir(translation_path, 0777)
 		if err != nil {

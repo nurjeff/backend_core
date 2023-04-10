@@ -9,8 +9,6 @@ import (
 	"reflect"
 	"runtime"
 	"strings"
-
-	"github.com/sc-js/backend_core/src/errs"
 )
 
 func GetMD5(input string) string {
@@ -19,7 +17,7 @@ func GetMD5(input string) string {
 }
 
 func WalkDir(root string, exts []string) ([]string, error) {
-	defer errs.Defer()
+
 	var files []string
 	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {

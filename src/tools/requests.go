@@ -10,7 +10,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sc-js/backend_core/src/bundles/deepcorebundle"
-	"github.com/sc-js/backend_core/src/errs"
 	"github.com/sc-js/pour"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -27,7 +26,7 @@ func GetPagedAndSend[T any](c *gin.Context, db *gorm.DB) (Paging, error) {
 }
 
 func GetPaged[T any](c *gin.Context, db *gorm.DB) (Paging, error) {
-	defer errs.Defer()
+
 	single := new(T)
 	multi := new([]T)
 	availableOrder := deepcorebundle.GetAllowedFilters(single)
@@ -53,7 +52,7 @@ func GetPaged[T any](c *gin.Context, db *gorm.DB) (Paging, error) {
 }
 
 func SaveUploadedFiles(c *gin.Context, destination string, userId ModelID, filenameOverride string, respond bool) error {
-	defer errs.Defer()
+
 	form, _ := c.MultipartForm()
 	files := form.File["upload[]"]
 	if files == nil {
@@ -78,14 +77,14 @@ func SaveUploadedFiles(c *gin.Context, destination string, userId ModelID, filen
 }
 
 func ServeFile(c *gin.Context, path string, userId ModelID) error {
-	defer errs.Defer()
+
 	pour.LogColor(true, pour.ColorPurple, "Serving File:", path, "to", userId)
 	c.File(DOCKER_PATH + "/" + path)
 	return nil
 }
 
 func SaveUploadedFile(c *gin.Context, destination string, userId ModelID, filenameOverride string, respond bool) error {
-	defer errs.Defer()
+
 	file, _ := c.FormFile("file")
 	if file == nil {
 		if respond {
@@ -139,14 +138,14 @@ func getPageInfo(c *gin.Context, filters []string) (uint64, uint64, []string, st
 }
 
 func RespondWithJSON(c *gin.Context, code int, payload interface{}) {
-	defer errs.Defer()
+
 	tr := tryTranslate(payload, c).(reflect.Value)
 	c.JSON(code, tr.Interface())
 	go logRequestDetails(c, code, tr.Interface())
 }
 
 func RespondWithJsonSilent(c *gin.Context, code int, payload interface{}) {
-	defer errs.Defer()
+
 	tr := tryTranslate(payload, c).(reflect.Value)
 	c.JSON(code, tr.Interface())
 	//go logRequestDetails(c, code, tr.Interface())
@@ -176,7 +175,7 @@ func RespondWithError(c *gin.Context, code int, message string) {
 }
 
 func RespondError(err error, code int, c *gin.Context, v ...any) {
-	defer errs.Defer()
+
 	var msg ErrorMessage
 	locale := getLocaleFromRequest(c)
 	if len(v) > 0 {
