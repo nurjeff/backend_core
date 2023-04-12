@@ -131,9 +131,9 @@ func getBundleRequirements(settings map[string]string) (*gin.RouterGroup, *tools
 	return gr, wrap, autoMigrate, settings
 }
 
-func Run(settings map[string]string) {
+func Run(settings map[string]string, enableRegister bool) {
 	settings = setupSettings(settings)
-	authbundle.InitBundle(gr, wrap, true, settings)
+	authbundle.InitBundle(gr, wrap, enableRegister, settings)
 	pour.LogColor(false, pour.ColorGreen, "Running non-TLS server at", SystemConfig.Server.Host+":"+fmt.Sprint(SystemConfig.Server.Port))
 
 	srv := &http.Server{
@@ -252,7 +252,8 @@ func initialMigration() *gorm.DB {
 	var err error
 	dns := "host=" + SystemConfig.Database.Address + " user=" + SystemConfig.Database.Username + " password=" + SystemConfig.Database.Password + " dbname=" + SystemConfig.Database.Name + " port=" + fmt.Sprint(SystemConfig.Database.Port) + " sslmode=disable TimeZone=Europe/Berlin"
 	db, err := gorm.Open(postgres.Open(dns), &gorm.Config{
-		Logger: newLogger,
+		DisableForeignKeyConstraintWhenMigrating: false,
+		Logger:                                   newLogger,
 	})
 	if err != nil {
 		pour.LogPanicKill(1, fmt.Sprint("Cannot connect to DB at", dns))
