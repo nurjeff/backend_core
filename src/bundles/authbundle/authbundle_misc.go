@@ -89,11 +89,10 @@ func CORS(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Access-Control-Allow-Origin", "*")
 		w.Header().Add("Access-Control-Allow-Credentials", "true")
-		w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With, X-LOCALE")
-		w.Header().Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, PATCH")
+		w.Header().Add("Access-Control-Allow-Headers", "Access-Control-Request-Headers, Access-Control-Allow-Headers, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Accept, Origin, Accept-Language, Cache-Control, X-Requested-With, X-LOCALE")
+		w.Header().Add("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS, PUT, DELETE, PATCH")
 
 		if r.Method == "OPTIONS" {
-			http.Error(w, "No Content", http.StatusNoContent)
 			return
 		}
 
