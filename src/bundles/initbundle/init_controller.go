@@ -74,7 +74,7 @@ func InitializeCoreWithBundles(bundles []Bundle, conf *InitConfiguration) {
 	//HTTP Router
 	gin.SetMode(initConf.GinMode)
 	r = gin.New()
-	r.Use(cors.Default())
+	r.Use(cors.New(cors.Config{AllowAllOrigins: true, AllowOrigins: []string{"*"}, AllowCredentials: true, AllowMethods: []string{http.MethodGet, http.MethodPost, http.MethodDelete, http.MethodPut, http.MethodPatch, http.MethodHead, http.MethodOptions}, AllowHeaders: []string{"Access-Control-Request-Headers", "Access-Control-Allow-Headers", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "Accept", "Origin", "Accept-Language", "Cache-Control", "X-Requested-With", "X-LOCALE"}}))
 	r.SetTrustedProxies(nil)
 	r.MaxMultipartMemory = initConf.MaxMultipartMemory << 20
 	gr = r.Group("")
