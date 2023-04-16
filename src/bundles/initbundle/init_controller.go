@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/gin-contrib/cors"
-	"github.com/gin-contrib/timeout"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/sc-js/backend_core/src/bundles/authbundle"
@@ -78,7 +77,7 @@ func InitializeCoreWithBundles(bundles []Bundle, conf *InitConfiguration) {
 	r.SetTrustedProxies(nil)
 	r.MaxMultipartMemory = initConf.MaxMultipartMemory << 20
 	gr = r.Group("")
-	gr.Use(timeoutMiddleware())
+	//gr.Use(timeoutMiddleware())
 	gr.Use(authbundle.AuthMiddleware(wrap.DB))
 	wsr = r.Group("/ws")
 
@@ -285,7 +284,7 @@ func putDefaultConfigValues(config Config) Config {
 	return config
 }
 
-func timeoutMiddleware() gin.HandlerFunc {
+/*func timeoutMiddleware() gin.HandlerFunc {
 	return timeout.New(
 		timeout.WithTimeout(5000*time.Millisecond),
 		timeout.WithHandler(func(c *gin.Context) {
@@ -293,7 +292,7 @@ func timeoutMiddleware() gin.HandlerFunc {
 		}),
 		timeout.WithResponse(timeoutResponse),
 	)
-}
+}*/
 
 func timeoutResponse(c *gin.Context) {
 	tools.RespondError(errors.New("timeout"), http.StatusRequestTimeout, c)
